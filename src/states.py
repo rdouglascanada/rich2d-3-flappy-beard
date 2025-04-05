@@ -25,7 +25,7 @@ def intro_state(game_state):
 def play_state(game_state):
     background_music = Music("resources/luigi-boccherini-minuetto.mp3")
 
-    text_sprite = Text(text="Click to end game",
+    text_sprite = Text(text="Right click to end game",
                        rect=(200, 400, 400, 100),
                        font_name="helvetica",
                        font_size=48)
@@ -42,7 +42,7 @@ def play_state(game_state):
         Music.stop_all_music()
         return
 
-    click_handler = MouseHandler(on_left_mouse_click=set_game_over_state)
+    click_handler = MouseHandler(on_right_mouse_click=set_game_over_state)
 
     static_model = Model(sprites=[text_sprite], handlers=[click_handler])
     music_button = Button(rect=(20, 20, 120, 40), text="Toggle Music", on_left_mouse_click=toggle_music)
