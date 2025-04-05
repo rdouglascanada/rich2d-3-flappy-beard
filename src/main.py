@@ -10,7 +10,7 @@ def toggle_music():
         background_music.play_indefinitely()
     return
 
-music_button = Button(rect=(660, 540, 120, 40), text="Toggle Music", on_left_mouse_click=toggle_music)
+music_button = Button(rect=(20, 20, 120, 40), text="Toggle Music", on_left_mouse_click=toggle_music)
 
 flappy_config = GameConfig(window_title="Flappy Beard", background_colour="skyblue",
                            window_width=800, window_height=600)
