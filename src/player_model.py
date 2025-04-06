@@ -13,7 +13,7 @@ class PlayerModel(Model):
             player_sprite.get_rect().update(player_character.get_rect())
             return
 
-        player_element = Element(on_update=sync_player_sprite)
+        sync_element = Element(on_update=sync_player_sprite)
 
-        super().__init__(sprites=[player_sprite], elements=[player_element])
+        super().__init__(sprites=[player_sprite], elements=[sync_element])
         return
