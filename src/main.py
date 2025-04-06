@@ -1,11 +1,13 @@
 from rich2d.game import Game, GameConfig
 from rich2d.models.state import StateModel, State
 from states import intro_state, play_state, game_over_state
+from game_manager import GameManager
 
+flappy_manager = GameManager()
 game_state = State(value="intro")
 state_map = {
-    "intro": intro_state(game_state),
-    "play": play_state(game_state),
+    "intro": intro_state(game_state, flappy_manager),
+    "play": play_state(game_state, flappy_manager),
     "game_over": game_over_state(game_state)
 }
 game_model = StateModel(state=game_state, state_map=state_map)

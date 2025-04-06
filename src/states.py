@@ -4,8 +4,9 @@ from rich2d.models.ui import Button
 from rich2d.sprites.text import Text
 from rich2d.handlers import MouseHandler
 from rich2d.elements.animated_text import FlashingText
+from player_model import PlayerModel
 
-def intro_state(game_state):
+def intro_state(game_state, game_manager):
     text_sprite = Text(text="Click to begin flapping",
                        rect=(200, 400, 400, 100),
                        font_name="helvetica",
@@ -19,10 +20,11 @@ def intro_state(game_state):
 
     click_handler = MouseHandler(on_left_mouse_click=set_play_state)
 
+    flappy_model = PlayerModel(player_character=game_manager.get_player_character())
     intro_model = Model(sprites=[text_sprite], elements=[flashing_element], handlers=[click_handler])
-    return intro_model
+    return ModelGroup(models=[intro_model, flappy_model])
 
-def play_state(game_state):
+def play_state(game_state, game_manager):
     background_music = Music("resources/luigi-boccherini-minuetto.mp3")
 
     text_sprite = Text(text="Right click to end game",
@@ -45,8 +47,10 @@ def play_state(game_state):
     click_handler = MouseHandler(on_right_mouse_click=set_game_over_state)
 
     static_model = Model(sprites=[text_sprite], handlers=[click_handler])
+
+    flappy_model = PlayerModel(player_character=game_manager.get_player_character())
     music_button = Button(rect=(20, 20, 120, 40), text="Toggle Music", on_left_mouse_click=toggle_music)
-    return ModelGroup(models=[static_model, music_button])
+    return ModelGroup(models=[static_model, music_button, flappy_model])
 
 def game_over_state(game_state):
     text_sprite = Text(text="Click to go back to start",
