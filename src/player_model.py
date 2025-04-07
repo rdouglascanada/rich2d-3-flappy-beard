@@ -10,7 +10,9 @@ class PlayerModel(Model):
         player_sprite = Rectangle(rect=player_character.get_rect(), colour="orange")
 
         def sync_player_sprite():
-            player_sprite.get_rect().update(player_character.get_rect())
+            sprite_rect = player_sprite.get_rect()
+            character_rect = player_character.get_rect()
+            sprite_rect.y = character_rect.y
             return
 
         sync_element = Element(on_update=sync_player_sprite)

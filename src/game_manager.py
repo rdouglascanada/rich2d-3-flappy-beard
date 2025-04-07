@@ -20,3 +20,9 @@ class GameManager:
 
     def get_player_character(self):
         return self._player_character
+
+    def get_window_width(self):
+        return self._window_width
+
+    def get_window_height(self):
+        return self._window_height

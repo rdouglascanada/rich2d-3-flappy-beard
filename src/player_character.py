@@ -3,9 +3,10 @@ from pygame import Rect
 class PlayerCharacter:
     RECT_WIDTH = 50
     RECT_HEIGHT = 50
-    ACCELERATION_DUE_TO_GRAVITY = 0.2
-    TERMINAL_VELOCITY = 2
-    FLAP_VELOCITY = -2
+    ACCELERATION_DUE_TO_GRAVITY = 2
+    TERMINAL_VELOCITY = 15
+    FLAP_VELOCITY = -15
+    X_VELOCITY = 10
 
     def __init__(self, rect=None, velocity=0):
         if rect is None:
@@ -24,7 +25,7 @@ class PlayerCharacter:
         self._velocity += PlayerCharacter.ACCELERATION_DUE_TO_GRAVITY
         self._velocity = min(self._velocity, PlayerCharacter.TERMINAL_VELOCITY)
 
-        self._rect.x += 1
+        self._rect.x += PlayerCharacter.X_VELOCITY
         self._rect.y += self._velocity
         return
 
